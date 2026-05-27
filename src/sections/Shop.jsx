@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { SHOP_PRODUCTS } from '../utils/constants'
 import { driveImg, driveThumb } from '../utils/drive'
 
+// Accepts either a full URL or a Google Drive file ID
+const imgSrc   = (s) => s?.startsWith('http') ? s : driveImg(s)
+const thumbSrc = (s) => s?.startsWith('http') ? s : driveThumb(s)
+
 const CATEGORIES = [
   { id: 'all',         label: 'All Gear' },
   { id: 'drones',      label: 'Drones' },
@@ -148,7 +152,7 @@ function ProductModal({ product, onClose, onAdd }) {
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={activeImg}
-                      src={driveImg(product.images[activeImg])}
+                      src={imgSrc(product.images[activeImg])}
                       alt={product.name}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -211,7 +215,7 @@ function ProductModal({ product, onClose, onAdd }) {
                         : 'border-white/10 hover:border-white/30'
                     }`}
                   >
-                    <img src={driveThumb(id)} alt="" className="w-full h-full object-cover" />
+                    <img src={thumbSrc(id)} alt="" className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -353,7 +357,7 @@ function ProductCard({ product, onAdd, onSelect }) {
       <div className={`relative h-48 flex items-center justify-center overflow-hidden bg-gradient-to-br ${CAT_GRADIENT[product.category]}`}>
         {product.images?.length > 0 ? (
           <img
-            src={driveThumb(product.images[0])}
+            src={thumbSrc(product.images[0])}
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
