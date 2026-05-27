@@ -40,8 +40,9 @@ export default function Navbar() {
               className="w-8 h-8 rounded-full object-cover ring-1 ring-white/20
                          group-hover:ring-rose-500 transition-all duration-300"
             />
-            <span className="font-display text-xl tracking-widest hidden sm:block">
-              FLYING SID FLIMZ
+            <span className="font-display text-xl hidden sm:block">
+              <span className="tracking-widest">FLYINGSID</span>
+              <span className="text-rose-500 tracking-[0.2em] ml-2">FLIMZ</span>
             </span>
           </button>
 
