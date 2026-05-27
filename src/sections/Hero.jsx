@@ -127,15 +127,6 @@ export default function Hero() {
       {/* Main content */}
       <div className="relative h-full flex flex-col items-center justify-center px-6 text-center">
 
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-rose-400 text-[10px] tracking-widest uppercase mb-5"
-        >
-          FlyingSid Flimz — FPV Cinematics
-        </motion.p>
-
         {/* Brand headline */}
         <div className="flex flex-col items-center">
           <div className="overflow-hidden">
