@@ -86,25 +86,54 @@ export default function Contact() {
               or something that's never been done before — I want to hear it.
             </p>
 
-            <div className="space-y-4">
+            <div className="flex flex-wrap gap-3 mt-2">
               {[
-                { icon: <EmailIcon />, label: SITE_CONFIG.email,                      href: `mailto:${SITE_CONFIG.email}` },
-                { icon: <PhoneIcon />, label: `+91 ${SITE_CONFIG.phone1}`,             href: `tel:+91${SITE_CONFIG.phone1}` },
-                { icon: <PhoneIcon />, label: `+91 ${SITE_CONFIG.phone2} (WhatsApp)`,  href: `https://wa.me/91${SITE_CONFIG.phone2}` },
-                { icon: <IGIcon />,    label: '@flyingsid09',                          href: SITE_CONFIG.instagram },
-              ].map(({ icon, label, href }) => (
+                {
+                  icon: <EmailIcon />,
+                  href: `mailto:${SITE_CONFIG.email}`,
+                  title: SITE_CONFIG.email,
+                },
+                {
+                  icon: <PhoneIcon />,
+                  href: `tel:+91${SITE_CONFIG.phone1}`,
+                  title: `+91 ${SITE_CONFIG.phone1}`,
+                },
+                {
+                  icon: (
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.429A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.7 0-3.3-.43-4.7-1.19l-.34-.2-3.29.86.9-3.17-.21-.35A8 8 0 114 12c0 4.418 3.582 8 8 8z" />
+                    </svg>
+                  ),
+                  href: `https://wa.me/91${SITE_CONFIG.phone2}`,
+                  title: `WhatsApp +91 ${SITE_CONFIG.phone2}`,
+                },
+                {
+                  icon: <IGIcon />,
+                  href: SITE_CONFIG.instagram,
+                  title: '@flyingsid09',
+                },
+                {
+                  icon: (
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    </svg>
+                  ),
+                  href: SITE_CONFIG.youtube,
+                  title: 'YouTube',
+                },
+              ].map(({ icon, href, title }) => (
                 <a
                   key={href}
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 text-gray-400 hover:text-rose-400 transition-colors group"
+                  title={title}
+                  className="w-12 h-12 rounded-full bg-surface border border-white/10
+                             flex items-center justify-center text-gray-400
+                             hover:text-rose-400 hover:border-rose-500/50
+                             transition-all duration-200 hover:scale-110"
                 >
-                  <div className="w-10 h-10 rounded-full bg-surface flex items-center justify-center
-                                  border border-white/10 group-hover:border-rose-500/50 transition-colors">
-                    {icon}
-                  </div>
-                  <span className="text-sm">{label}</span>
+                  {icon}
                 </a>
               ))}
             </div>
