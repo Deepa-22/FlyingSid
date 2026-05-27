@@ -133,7 +133,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-rose-400 text-[10px] tracking-widest uppercase mb-5"
         >
-          Flying Sid — FPV Cinematics
+          FlyingSid Flimz — FPV Cinematics
         </motion.p>
 
         {/* Giant FPV headline with glow */}

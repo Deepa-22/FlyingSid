@@ -217,7 +217,7 @@ function CartDrawer({ items, onClose, onQtyChange, onRemove }) {
   const total = items.reduce((s, i) => s + i.price * i.qty, 0)
   const count = items.reduce((s, i) => s + i.qty, 0)
   const orderText =
-    `Hi Flying Sid! I'd like to order:\n\n` +
+    `Hi FlyingSid Flimz! I'd like to order:\n\n` +
     items.map(i => `• ${i.name} ×${i.qty} — ₹${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n') +
     `\n\nTotal: ₹${total.toLocaleString('en-IN')}\n\nPlease confirm availability and shipping details.`
 
@@ -309,8 +309,8 @@ function CartDrawer({ items, onClose, onQtyChange, onRemove }) {
               <button
                 onClick={() => {
                   const txt = encodeURIComponent(orderText)
-                  window.open(`https://wa.me/918867636073?text=${txt}`, '_blank')
-                  setTimeout(() => window.open(`https://wa.me/917387682474?text=${txt}`, '_blank'), 600)
+                  window.open(`whatsapp://send?phone=918867636073&text=${txt}`, '_blank')
+                  setTimeout(() => window.open(`whatsapp://send?phone=917387682474&text=${txt}`, '_blank'), 600)
                 }}
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm tracking-widest uppercase transition-colors"
               >

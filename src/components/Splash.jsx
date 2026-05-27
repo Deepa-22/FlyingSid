@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const BRAND = 'FLYING SID'.split('')
+const BRAND = 'FLYING SID FLIMZ'.split('')
 
 export default function Splash({ onFinish }) {
   const [visible, setVisible] = useState(true)

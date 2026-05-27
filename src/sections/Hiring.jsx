@@ -75,7 +75,7 @@ function ApplyModal({ position, onClose }) {
                 <input name="portfolio" placeholder="LinkedIn / Portfolio URL (optional)" className={INPUT} />
                 <textarea
                   name="message" rows={4} required
-                  placeholder="Why Flying Sid? Tell us about yourself and what you bring..."
+                  placeholder="Why FlyingSid Flimz? Tell us about yourself and what you bring..."
                   className={INPUT + ' resize-none'}
                 />
 
@@ -296,7 +296,7 @@ export default function Hiring() {
           viewport={{ once: true }} transition={{ duration: 0.6 }}
           className="font-display text-4xl md:text-5xl text-white tracking-wider text-center mb-12"
         >
-          Why Flying Sid?
+          Why FlyingSid Flimz?
         </motion.h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
           {WHY_JOIN.map((item, i) => (

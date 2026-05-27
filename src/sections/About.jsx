@@ -207,7 +207,7 @@ export default function About() {
             {/* Accent line */}
             <div className="mt-4 flex items-center gap-3">
               <div className="h-px flex-1 bg-gradient-to-r from-rose-500/50 to-transparent" />
-              <span className="text-[9px] text-rose-500/50 tracking-[0.3em] uppercase font-mono">Flying Sid</span>
+              <span className="text-[9px] text-rose-500/50 tracking-[0.3em] uppercase font-mono">FlyingSid Flimz</span>
             </div>
           </motion.div>
 

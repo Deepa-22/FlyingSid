@@ -41,7 +41,7 @@ export default function Navbar() {
                          group-hover:ring-rose-500 transition-all duration-300"
             />
             <span className="font-display text-xl tracking-widest hidden sm:block">
-              FLYING SID
+              FLYING SID FLIMZ
             </span>
           </button>
 
