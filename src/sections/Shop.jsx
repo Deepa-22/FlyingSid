@@ -7,15 +7,10 @@ import { driveImg, driveThumb } from '../utils/drive'
 const imgSrc   = (s) => s?.startsWith('http') ? s : driveImg(s)
 const thumbSrc = (s) => s?.startsWith('http') ? s : driveThumb(s)
 
-// Opens WhatsApp via anchor click (window.open blocks custom protocols)
-const openWhatsApp = (phone, text) => {
-  const a = document.createElement('a')
-  a.href = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(text)}`
-  a.click()
-}
 const sendToAll = (text) => {
-  openWhatsApp('918867636073', text)
-  setTimeout(() => openWhatsApp('917387682474', text), 700)
+  const encoded = encodeURIComponent(text)
+  window.open(`https://api.whatsapp.com/send?phone=918867636073&text=${encoded}`, '_blank')
+  setTimeout(() => window.open(`https://api.whatsapp.com/send?phone=917387682474&text=${encoded}`, '_blank'), 700)
 }
 
 const CATEGORIES = [
