@@ -136,20 +136,33 @@ export default function Hero() {
           FlyingSid Flimz — FPV Cinematics
         </motion.p>
 
-        {/* Giant FPV headline with glow */}
-        <div className="overflow-hidden relative">
-          <motion.h1
-            initial={{ y: 120 }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.45, duration: 1, ease: [0.215, 0.61, 0.355, 1] }}
-            className="font-display text-[5rem] sm:text-[8rem] md:text-[11rem] lg:text-[14rem]
-                       leading-none text-white select-none relative"
-            style={{
-              textShadow: '0 0 80px rgba(244,63,94,0.25), 0 0 160px rgba(244,63,94,0.1)',
-            }}
-          >
-            FPV
-          </motion.h1>
+        {/* Brand headline */}
+        <div className="flex flex-col items-center">
+          <div className="overflow-hidden">
+            <motion.h1
+              initial={{ y: 120 }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.45, duration: 1, ease: [0.215, 0.61, 0.355, 1] }}
+              className="font-display text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[9.5rem]
+                         leading-none text-white select-none"
+              style={{
+                textShadow: '0 0 80px rgba(244,63,94,0.2), 0 0 160px rgba(244,63,94,0.08)',
+              }}
+            >
+              FLYINGSID
+            </motion.h1>
+          </div>
+          <div className="overflow-hidden">
+            <motion.div
+              initial={{ y: 80 }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.6, duration: 1, ease: [0.215, 0.61, 0.355, 1] }}
+              className="font-display text-[2rem] sm:text-[3.2rem] md:text-[4.5rem] lg:text-[6rem]
+                         leading-none text-rose-500 select-none tracking-[0.15em]"
+            >
+              FLIMZ
+            </motion.div>
+          </div>
         </div>
 
         {/* Staggered subtitle words */}

@@ -55,8 +55,8 @@ export const SERVICES = [
   },
   {
     id: 'events',
-    title: 'Events & Weddings',
-    desc: 'Capture the day from an angle nobody else can. Sweeping reveals and cinematic moments.',
+    title: 'Events & Concerts',
+    desc: 'Live concerts, sporting events, festivals — FPV captures the energy and scale that no static camera can.',
   },
   {
     id: 'realestate',
@@ -287,7 +287,7 @@ export const SHOP_PRODUCTS = [
 export const PROJECT_TYPES = [
   'FPV Cinematography',
   'Commercial Shoot',
-  'Event / Wedding',
+  'Event / Concert',
   'Extreme Sports',
   'Real Estate',
   'Feature / Short Film',
