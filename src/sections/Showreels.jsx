@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useDrive from '../hooks/useDrive'
 import { DRIVE_FOLDERS } from '../utils/constants'
+import { driveThumb } from '../utils/drive'
 
 function SkeletonGrid() {
   return (
@@ -81,14 +82,15 @@ export default function Showreels() {
                                    : 'border-white/10 hover:border-white/30'
                                }`}
                   >
-                    {v.thumbnailLink ? (
-                      <img src={v.thumbnailLink} alt={v.name}
-                           className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full bg-surface-2 flex items-center justify-center">
-                        <span className="font-display text-2xl text-gray-600">{i + 1}</span>
-                      </div>
-                    )}
+                    <img
+                      src={driveThumb(v.id)}
+                      alt={v.name}
+                      className="w-full h-full object-cover"
+                      onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
+                    />
+                    <div className="w-full h-full bg-surface-2 items-center justify-center hidden">
+                      <span className="font-display text-2xl text-gray-600">{i + 1}</span>
+                    </div>
                   </button>
                 ))}
               </div>

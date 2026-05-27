@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useDrive from '../hooks/useDrive'
 import { DRIVE_FOLDERS } from '../utils/constants'
-import { driveImg } from '../utils/drive'
+import { driveImg, driveThumb } from '../utils/drive'
 
 // ── Lightbox ─────────────────────────────────────────────────────────────────
 
@@ -229,10 +229,11 @@ export default function Gallery() {
                   />
                 ) : (
                   <div className="relative w-full h-full bg-surface-2">
-                    {file.thumbnailLink && (
-                      <img src={file.thumbnailLink} alt={file.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                    )}
+                    <img
+                      src={driveThumb(file.id)}
+                      alt={file.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                         <span className="text-white text-xl ml-1">▶</span>

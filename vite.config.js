@@ -15,6 +15,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api\/img/, '/download'),
       },
+      '/api/thumb': {
+        target: 'https://drive.google.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api\/thumb/, '/thumbnail'),
+      },
     },
   },
   build: {
