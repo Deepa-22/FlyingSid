@@ -1,6 +1,7 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SHOP_PRODUCTS } from '../utils/constants'
+import { driveImg, driveThumb } from '../utils/drive'
 
 const CATEGORIES = [
   { id: 'all',         label: 'All Gear' },
@@ -76,13 +77,232 @@ function AccessoryIcon() {
 
 const ICON_MAP = { drones: DroneIcon, parts: PartIcon, accessories: AccessoryIcon }
 
+// ── Product Detail Modal ──────────────────────────────────────────────────────
+
+function ProductModal({ product, onClose, onAdd }) {
+  const [activeImg, setActiveImg] = useState(0)
+  const [added, setAdded]         = useState(false)
+  const Icon = ICON_MAP[product.category] || DroneIcon
+  const hasImages = product.images?.length > 0
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    const onKey = e => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft')  setActiveImg(i => Math.max(0, i - 1))
+      if (e.key === 'ArrowRight') setActiveImg(i => Math.min((product.images?.length ?? 1) - 1, i + 1))
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [onClose, product.images?.length])
+
+  const handleAdd = () => {
+    setAdded(true)
+    onAdd(product)
+    setTimeout(() => setAdded(false), 700)
+  }
+
+  const orderText =
+    `Hi FlyingSid Flimz! I'm interested in:\n\n• ${product.name} — ₹${product.price.toLocaleString('en-IN')}\n\nPlease confirm availability and details.`
+
+  return (
+    <>
+      {/* Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[80]"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 40, scale: 0.97 }}
+        transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+        className="fixed inset-0 z-[81] flex items-center justify-center p-4 pointer-events-none"
+      >
+        <div
+          className="pointer-events-auto relative w-full max-w-4xl max-h-[90vh] bg-[#0d0d0d]
+                     border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl"
+          onClick={e => e.stopPropagation()}
+        >
+          {/* Close */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center
+                       rounded-lg bg-black/60 hover:bg-white/10 text-gray-400 hover:text-white
+                       transition-colors text-xl leading-none"
+          >✕</button>
+
+          {/* Left — image area */}
+          <div className="md:w-[55%] flex-shrink-0 flex flex-col bg-surface">
+            {/* Main image */}
+            <div className={`flex-1 flex items-center justify-center relative overflow-hidden min-h-[240px] md:min-h-0
+                             bg-gradient-to-br ${CAT_GRADIENT[product.category]}`}>
+              {hasImages ? (
+                <>
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeImg}
+                      src={driveImg(product.images[activeImg])}
+                      alt={product.name}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full object-contain max-h-[50vh] md:max-h-full p-4"
+                    />
+                  </AnimatePresence>
+
+                  {/* Prev / Next arrows (only if multiple images) */}
+                  {product.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => setActiveImg(i => Math.max(0, i - 1))}
+                        disabled={activeImg === 0}
+                        className="absolute left-3 text-gray-500 hover:text-white text-4xl px-1
+                                   disabled:opacity-20 transition-colors select-none"
+                      >‹</button>
+                      <button
+                        onClick={() => setActiveImg(i => Math.min(product.images.length - 1, i + 1))}
+                        disabled={activeImg === product.images.length - 1}
+                        className="absolute right-3 text-gray-500 hover:text-white text-4xl px-1
+                                   disabled:opacity-20 transition-colors select-none"
+                      >›</button>
+                    </>
+                  )}
+
+                  {/* Image counter */}
+                  <span className="absolute bottom-3 right-4 text-[10px] text-white/40 tracking-widest">
+                    {activeImg + 1} / {product.images.length}
+                  </span>
+                </>
+              ) : (
+                <div className="flex flex-col items-center gap-3 opacity-60">
+                  <Icon />
+                  <p className="text-[10px] text-white/30 tracking-widest uppercase">No images yet</p>
+                </div>
+              )}
+
+              {/* Badge */}
+              {product.badge && (
+                <span className={`absolute top-3 left-3 text-[10px] font-bold px-2.5 py-0.5
+                                  rounded-full tracking-widest ${BADGE_CLS[product.badge]}`}>
+                  {product.badge.toUpperCase()}
+                </span>
+              )}
+            </div>
+
+            {/* Thumbnail strip */}
+            {hasImages && product.images.length > 1 && (
+              <div className="flex gap-2 p-3 overflow-x-auto border-t border-white/8"
+                   style={{ scrollbarWidth: 'none' }}>
+                {product.images.map((id, i) => (
+                  <button
+                    key={id}
+                    onClick={() => setActiveImg(i)}
+                    className={`flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden border-2 transition-all ${
+                      i === activeImg
+                        ? 'border-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.4)]'
+                        : 'border-white/10 hover:border-white/30'
+                    }`}
+                  >
+                    <img src={driveThumb(id)} alt="" className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Right — details */}
+          <div className="flex-1 flex flex-col overflow-y-auto">
+            <div className="flex-1 p-6 md:p-8 space-y-5">
+              {/* Category tag */}
+              <p className="text-[10px] text-gray-600 tracking-widest uppercase">
+                #{product.category}
+              </p>
+
+              {/* Name */}
+              <h2 className="font-display text-2xl md:text-3xl text-white leading-snug">
+                {product.name}
+              </h2>
+
+              {/* Price */}
+              <div>
+                <p className="text-[9px] text-gray-700 tracking-widest uppercase mb-1">Price</p>
+                <p className="font-display text-4xl text-white">
+                  ₹{product.price.toLocaleString('en-IN')}
+                </p>
+              </div>
+
+              {/* Description */}
+              <div>
+                <p className="text-[10px] text-gray-600 tracking-widest uppercase mb-2">About</p>
+                <p className="text-sm text-gray-400 leading-relaxed">{product.desc}</p>
+              </div>
+
+              {/* Specs */}
+              {product.specs?.length > 0 && (
+                <div>
+                  <p className="text-[10px] text-gray-600 tracking-widest uppercase mb-3">Specifications</p>
+                  <ul className="space-y-2">
+                    {product.specs.map(s => (
+                      <li key={s} className="flex items-center gap-3 text-sm text-gray-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500 flex-shrink-0" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Action buttons */}
+            <div className="p-6 md:p-8 pt-0 space-y-3 border-t border-white/8">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={handleAdd}
+                className={`w-full py-3 rounded-xl text-sm font-bold tracking-widest uppercase transition-colors ${
+                  added ? 'bg-emerald-500 text-white' : 'bg-rose-500 hover:bg-rose-400 text-white'
+                }`}
+              >
+                {added ? '✓ Added to Cart' : 'Add to Cart'}
+              </motion.button>
+
+              <button
+                onClick={() => {
+                  const txt = encodeURIComponent(orderText)
+                  window.open(`whatsapp://send?phone=918867636073&text=${txt}`, '_blank')
+                  setTimeout(() => window.open(`whatsapp://send?phone=917387682474&text=${txt}`, '_blank'), 600)
+                }}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl
+                           bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold
+                           tracking-widest uppercase transition-colors"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.429A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.7 0-3.3-.43-4.7-1.19l-.34-.2-3.29.86.9-3.17-.21-.35A8 8 0 114 12c0 4.418 3.582 8 8 8z" />
+                </svg>
+                Enquire on WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </>
+  )
+}
+
 // ── Product Card ─────────────────────────────────────────────────────────────
 
-function ProductCard({ product, onAdd }) {
+function ProductCard({ product, onAdd, onSelect }) {
   const ref = useRef(null)
   const [tilt, setTilt] = useState({ rx: 0, ry: 0, gx: 50, gy: 50 })
   const [added, setAdded] = useState(false)
-  const [showSpecs, setShowSpecs] = useState(false)
   const Icon = ICON_MAP[product.category] || DroneIcon
 
   const onMouseMove = useCallback((e) => {
@@ -97,7 +317,8 @@ function ProductCard({ product, onAdd }) {
     setTilt({ rx: 0, ry: 0, gx: 50, gy: 50 })
   }, [])
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
+    e.stopPropagation()
     setAdded(true)
     onAdd(product)
     setTimeout(() => setAdded(false), 700)
@@ -110,6 +331,7 @@ function ProductCard({ product, onAdd }) {
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
+      onClick={() => onSelect(product)}
       style={{
         transform: `perspective(900px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
         transition: isResting
@@ -117,7 +339,7 @@ function ProductCard({ product, onAdd }) {
           : 'transform 0.05s linear',
         willChange: 'transform',
       }}
-      className="relative rounded-2xl overflow-hidden bg-surface border border-white/8 group"
+      className="relative rounded-2xl overflow-hidden bg-surface border border-white/8 group cursor-pointer"
     >
       {/* Holographic shimmer */}
       <div
@@ -129,26 +351,43 @@ function ProductCard({ product, onAdd }) {
 
       {/* Image area */}
       <div className={`relative h-48 flex items-center justify-center overflow-hidden bg-gradient-to-br ${CAT_GRADIENT[product.category]}`}>
-        {[0, 1].map(i => (
-          <div
-            key={i}
-            className="absolute rounded-full border border-white/5 animate-ping"
-            style={{
-              width:  `${88 + i * 44}px`,
-              height: `${88 + i * 44}px`,
-              animationDelay:    `${i * 1.1}s`,
-              animationDuration: '2.8s',
-            }}
+        {product.images?.length > 0 ? (
+          <img
+            src={driveThumb(product.images[0])}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-        ))}
-        <div className="relative z-10">
-          <Icon />
-        </div>
+        ) : (
+          <>
+            {[0, 1].map(i => (
+              <div
+                key={i}
+                className="absolute rounded-full border border-white/5 animate-ping"
+                style={{
+                  width:  `${88 + i * 44}px`,
+                  height: `${88 + i * 44}px`,
+                  animationDelay:    `${i * 1.1}s`,
+                  animationDuration: '2.8s',
+                }}
+              />
+            ))}
+            <div className="relative z-10"><Icon /></div>
+          </>
+        )}
+
         {product.badge && (
           <span className={`absolute top-3 left-3 z-20 text-[10px] font-bold px-2.5 py-0.5 rounded-full tracking-widest ${BADGE_CLS[product.badge]}`}>
             {product.badge.toUpperCase()}
           </span>
         )}
+
+        {/* View detail hint */}
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+          <span className="text-[11px] text-white/80 tracking-widest uppercase border border-white/30
+                           px-3 py-1.5 rounded-full backdrop-blur-sm">View Details</span>
+        </div>
+
         <span className="absolute bottom-2.5 right-3 z-20 text-[9px] text-white/25 tracking-widest uppercase">
           #{product.category}
         </span>
@@ -159,37 +398,9 @@ function ProductCard({ product, onAdd }) {
         <h3 className="font-display text-[15px] leading-snug mb-1 text-white group-hover:text-rose-300 transition-colors duration-300">
           {product.name}
         </h3>
-        <p className="text-[11px] text-gray-600 leading-relaxed mb-3 line-clamp-2">{product.desc}</p>
+        <p className="text-[11px] text-gray-600 leading-relaxed mb-4 line-clamp-2">{product.desc}</p>
 
-        <button
-          onClick={() => setShowSpecs(v => !v)}
-          className="flex items-center gap-1 text-[10px] text-gray-700 hover:text-gray-400 uppercase tracking-widest mb-1 transition-colors"
-        >
-          Specs
-          <span style={{ display: 'inline-block', transition: 'transform .2s', transform: showSpecs ? 'rotate(180deg)' : 'none' }}>▾</span>
-        </button>
-
-        <AnimatePresence initial={false}>
-          {showSpecs && (
-            <motion.ul
-              key="specs"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="overflow-hidden space-y-1 mb-2"
-            >
-              {product.specs.map(s => (
-                <li key={s} className="flex items-center gap-2 text-[11px] text-gray-500">
-                  <span className="w-1 h-1 rounded-full bg-rose-500 flex-shrink-0" />
-                  {s}
-                </li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-
-        <div className="flex items-end justify-between pt-4 border-t border-white/8 mt-2">
+        <div className="flex items-end justify-between pt-4 border-t border-white/8">
           <div>
             <p className="text-[9px] text-gray-700 tracking-widest uppercase mb-0.5">Price</p>
             <p className="font-display text-2xl text-white leading-none">
@@ -340,10 +551,11 @@ function CartDrawer({ items, onClose, onQtyChange, onRemove }) {
 // ── Main Section ──────────────────────────────────────────────────────────────
 
 export default function Shop() {
-  const [category, setCategory] = useState('all')
-  const [cart, setCart] = useState([])
-  const [cartOpen, setCartOpen] = useState(false)
-  const [bump, setBump] = useState(false)
+  const [category, setCategory]       = useState('all')
+  const [cart, setCart]               = useState([])
+  const [cartOpen, setCartOpen]       = useState(false)
+  const [bump, setBump]               = useState(false)
+  const [selected, setSelected]       = useState(null)
 
   const filtered = SHOP_PRODUCTS.filter(p => category === 'all' || p.category === category)
   const cartCount = cart.reduce((s, i) => s + i.qty, 0)
@@ -375,25 +587,19 @@ export default function Shop() {
           backgroundSize: '30px 30px',
         }}
       />
-      {/* Ambient glows */}
       <div className="absolute -top-48 left-1/3 w-[560px] h-[560px] bg-rose-600/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-48 right-1/3 w-[560px] h-[560px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="section-container relative">
-        {/* Header */}
         <motion.p
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           className="section-subtitle text-rose-400 mb-3"
-        >
-          Shop
-        </motion.p>
+        >Shop</motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.7 }}
           className="section-title mb-4"
-        >
-          FPV Arsenal
-        </motion.h2>
+        >FPV Arsenal</motion.h2>
         <motion.p
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           transition={{ delay: 0.2 }}
@@ -414,9 +620,7 @@ export default function Shop() {
                   ? 'bg-rose-500 border-rose-500 text-white shadow-lg shadow-rose-500/20'
                   : 'bg-transparent border-white/10 text-gray-500 hover:border-white/25 hover:text-white'
               }`}
-            >
-              {cat.label}
-            </button>
+            >{cat.label}</button>
           ))}
         </div>
 
@@ -432,7 +636,7 @@ export default function Shop() {
                 exit={{ opacity: 0, scale: 0.85 }}
                 transition={{ delay: i * 0.05, duration: 0.3 }}
               >
-                <ProductCard product={product} onAdd={addToCart} />
+                <ProductCard product={product} onAdd={addToCart} onSelect={setSelected} />
               </motion.div>
             ))}
           </AnimatePresence>
@@ -453,9 +657,7 @@ export default function Shop() {
           <a
             href="#contact"
             className="inline-block px-8 py-3 rounded-xl border border-rose-500 text-rose-400 hover:bg-rose-500 hover:text-white text-sm tracking-widest uppercase font-medium transition-all duration-200"
-          >
-            Enquire Now
-          </a>
+          >Enquire Now</a>
         </motion.div>
       </div>
 
@@ -479,12 +681,21 @@ export default function Shop() {
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               className="absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1 rounded-full bg-white text-rose-500 text-[10px] font-bold flex items-center justify-center"
-            >
-              {cartCount}
-            </motion.span>
+            >{cartCount}</motion.span>
           )}
         </AnimatePresence>
       </motion.button>
+
+      {/* Product detail modal */}
+      <AnimatePresence>
+        {selected && (
+          <ProductModal
+            product={selected}
+            onClose={() => setSelected(null)}
+            onAdd={addToCart}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Cart drawer */}
       <AnimatePresence>

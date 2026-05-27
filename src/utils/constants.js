@@ -180,6 +180,7 @@ export const SHOP_PRODUCTS = [
     badge: 'Bestseller',
     desc: 'Custom-built 5-inch cinematic FPV rig. F7 stack, 2306 motors, DJI O3 Air Unit. Tuned and test-flown by our pilots.',
     specs: ['2306 2450KV Motors', 'F7 45A AIO Stack', 'DJI O3 Air Unit', '6S LiPo Ready', 'GoPro / naked cam mount'],
+    images: [], // Add Google Drive file IDs here
   },
   {
     id: 'nano-3',
@@ -189,6 +190,7 @@ export const SHOP_PRODUCTS = [
     badge: 'New',
     desc: 'Ultra-compact ducted cinewhoop for indoor, tight-space and proximity flying. Prop guards and cam mount included.',
     specs: ['1404 3800KV Motors', 'Walksnail Avatar', 'Micro cam mount', 'Ducted props', '4S LiPo'],
+    images: [],
   },
   {
     id: 'long-range-7',
@@ -198,6 +200,7 @@ export const SHOP_PRODUCTS = [
     badge: null,
     desc: 'GPS-assisted long-range FPV built for landscape, expedition and infrastructure cinematography.',
     specs: ['2807 1300KV Motors', 'GPS Rescue enabled', 'ExpressLRS 900MHz', 'INAV firmware', '6S 3000mAh compatible'],
+    images: [],
   },
   {
     id: 'toothpick-2',
@@ -207,6 +210,7 @@ export const SHOP_PRODUCTS = [
     badge: 'Limited',
     desc: 'Tiny, lightning-fast micro drone for BTS shots, interiors and aggressive proximity flying under 250g.',
     specs: ['1102 8500KV Motors', 'Walksnail Nano', 'ELRS 2.4GHz', '1S / 2S LiPo', '< 250g AUW'],
+    images: [],
   },
   // Parts
   {
@@ -217,6 +221,7 @@ export const SHOP_PRODUCTS = [
     badge: null,
     desc: 'All-in-one F7 flight controller with 45A ESC stack. Plug and play for all 5-inch builds.',
     specs: ['STM32F745 MCU', '45A BLHeli32 ESC', 'Barometer + OSD', 'USB-C port', 'Betaflight ready'],
+    images: [],
   },
   {
     id: 'o3-air-unit',
@@ -226,6 +231,7 @@ export const SHOP_PRODUCTS = [
     badge: 'Hot',
     desc: 'Official DJI O3 Air Unit with full cable set. 4K recording with ultra-low latency video transmission.',
     specs: ['4K / 60fps recording', '< 40ms latency', 'Up to 10km range', 'MicroSD up to 256GB', 'DJI Goggles 2/3 compat.'],
+    images: [],
   },
   {
     id: '2306-motors',
@@ -235,6 +241,7 @@ export const SHOP_PRODUCTS = [
     badge: null,
     desc: 'Our go-to motors for 5-inch freestyle and cinematic builds. Pre-balanced, pre-tested matched set.',
     specs: ['2306 stator', '2450KV', '6S optimised', 'Titanium alloy shaft', 'IP52 splash resistant'],
+    images: [],
   },
   {
     id: 'elrs-tx',
@@ -244,6 +251,7 @@ export const SHOP_PRODUCTS = [
     badge: null,
     desc: 'Compact ExpressLRS 2.4GHz module for JR Bay radios. Best-in-class link latency and range.',
     specs: ['2.4GHz band', '250Hz packet rate', '< 1ms latency', 'WiFi firmware update', 'Up to 1W output'],
+    images: [],
   },
   // Accessories
   {
@@ -254,6 +262,7 @@ export const SHOP_PRODUCTS = [
     badge: 'Bundle',
     desc: 'Matched set of four 6S 1300mAh packs. Pre-charged, cycle tested and balanced for consistent performance.',
     specs: ['6S 22.2V nominal', '1300mAh capacity', '120C burst discharge', 'XT60 connector', 'Hard case compatible'],
+    images: [],
   },
   {
     id: 'dual-charger',
@@ -263,6 +272,7 @@ export const SHOP_PRODUCTS = [
     badge: null,
     desc: '200W dual-channel LiPo/LiHV charger with built-in balancer, battery analyser and USB-C PD input.',
     specs: ['200W per port', '1–8S LiPo/LiHV', 'USB-C PD 65W input', 'Bluetooth app control', 'Internal resistance check'],
+    images: [],
   },
   {
     id: 'pilot-case',
@@ -272,6 +282,7 @@ export const SHOP_PRODUCTS = [
     badge: 'Custom',
     desc: 'IP67 waterproof hard case with custom foam inlay for drone + battery + controller. TSA-approved.',
     specs: ['IP67 waterproof', 'TSA-approved latches', 'Custom foam inlay', 'Interior 58×46×25cm', 'Pressure valve'],
+    images: [],
   },
   {
     id: 'dji-goggles-3',
@@ -281,6 +292,7 @@ export const SHOP_PRODUCTS = [
     badge: 'Premium',
     desc: 'Latest DJI FPV goggles with micro-OLED displays, O3+ compatibility and built-in DVR recording.',
     specs: ['Micro-OLED dual screens', '100Hz refresh rate', 'O3+ compatible', 'DVR built-in', 'Adjustable diopter'],
+    images: [],
   },
 ]
 
