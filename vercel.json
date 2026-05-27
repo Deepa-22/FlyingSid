@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/img",   "destination": "https://drive.usercontent.google.com/download" },
+    { "source": "/api/thumb", "destination": "https://drive.google.com/thumbnail" }
+  ]
+}
