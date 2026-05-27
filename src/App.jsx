@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import Splash     from './components/Splash'
-import Navbar     from './components/Navbar'
+import Splash          from './components/Splash'
+import Navbar          from './components/Navbar'
+import CustomCursor    from './components/CustomCursor'
+import ScrollProgress  from './components/ScrollProgress'
 import Hero       from './sections/Hero'
 import About      from './sections/About'
 import FeaturedIn from './sections/FeaturedIn'
@@ -18,6 +20,8 @@ export default function App() {
 
   return (
     <>
+      <CustomCursor />
+      <ScrollProgress />
       {!splashDone && <Splash onFinish={() => setSplashDone(true)} />}
 
       {splashDone && (

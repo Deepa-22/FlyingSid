@@ -28,6 +28,13 @@
   }
 }
 
+/* Hide native cursor on hover-capable devices — replaced by CustomCursor */
+@media (hover: hover) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 @layer components {
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
