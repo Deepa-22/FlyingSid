@@ -7,6 +7,17 @@ import { driveImg, driveThumb } from '../utils/drive'
 const imgSrc   = (s) => s?.startsWith('http') ? s : driveImg(s)
 const thumbSrc = (s) => s?.startsWith('http') ? s : driveThumb(s)
 
+// Opens WhatsApp via anchor click (window.open blocks custom protocols)
+const openWhatsApp = (phone, text) => {
+  const a = document.createElement('a')
+  a.href = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(text)}`
+  a.click()
+}
+const sendToAll = (text) => {
+  openWhatsApp('918867636073', text)
+  setTimeout(() => openWhatsApp('917387682474', text), 700)
+}
+
 const CATEGORIES = [
   { id: 'all',         label: 'All Gear' },
   { id: 'drones',      label: 'Drones' },
@@ -278,11 +289,7 @@ function ProductModal({ product, onClose, onAdd }) {
               </motion.button>
 
               <button
-                onClick={() => {
-                  const txt = encodeURIComponent(orderText)
-                  window.open(`whatsapp://send?phone=918867636073&text=${txt}`, '_blank')
-                  setTimeout(() => window.open(`whatsapp://send?phone=917387682474&text=${txt}`, '_blank'), 600)
-                }}
+                onClick={() => sendToAll(orderText)}
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl
                            bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold
                            tracking-widest uppercase transition-colors"
@@ -522,11 +529,7 @@ function CartDrawer({ items, onClose, onQtyChange, onRemove }) {
                 We'll confirm stock & shipping within 24 hrs after you reach out.
               </p>
               <button
-                onClick={() => {
-                  const txt = encodeURIComponent(orderText)
-                  window.open(`whatsapp://send?phone=918867636073&text=${txt}`, '_blank')
-                  setTimeout(() => window.open(`whatsapp://send?phone=917387682474&text=${txt}`, '_blank'), 600)
-                }}
+                onClick={() => sendToAll(orderText)}
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm tracking-widest uppercase transition-colors"
               >
                 <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
