@@ -9,10 +9,13 @@ export const DRIVE_FOLDERS = {
 }
 
 export const SITE_CONFIG = {
-  name:      'Flying Sid',
+  name:      'FlyingSid Flimz',
   tagline:   'FPV Cinematics',
-  instagram: 'https://www.instagram.com/flyingsid',  // update with real handle
-  email:     'hello@flyingsid.com',                   // update with real email
+  instagram: 'https://www.instagram.com/flyingsid09',
+  email:     'flyingsidflimz@gmail.com',
+  phone1:    '7387682474',
+  phone2:    '8867636073',
+  youtube:   'https://youtu.be/SjRwOyhiggA',
 }
 
 export const NAV_LINKS = [

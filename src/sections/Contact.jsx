@@ -2,6 +2,13 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SITE_CONFIG, PROJECT_TYPES } from '../utils/constants'
 
+const PhoneIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+  </svg>
+)
+
 const INPUT =
   'w-full bg-surface border border-white/10 rounded-xl px-5 py-4 text-white text-sm ' +
   'placeholder-gray-600 focus:outline-none focus:border-rose-500/60 transition-colors duration-300'
@@ -81,8 +88,10 @@ export default function Contact() {
 
             <div className="space-y-4">
               {[
-                { icon: <EmailIcon />, label: SITE_CONFIG.email, href: `mailto:${SITE_CONFIG.email}` },
-                { icon: <IGIcon />,    label: '@flyingsid',       href: SITE_CONFIG.instagram },
+                { icon: <EmailIcon />, label: SITE_CONFIG.email,                      href: `mailto:${SITE_CONFIG.email}` },
+                { icon: <PhoneIcon />, label: `+91 ${SITE_CONFIG.phone1}`,             href: `tel:+91${SITE_CONFIG.phone1}` },
+                { icon: <PhoneIcon />, label: `+91 ${SITE_CONFIG.phone2} (WhatsApp)`,  href: `https://wa.me/91${SITE_CONFIG.phone2}` },
+                { icon: <IGIcon />,    label: '@flyingsid09',                          href: SITE_CONFIG.instagram },
               ].map(({ icon, label, href }) => (
                 <a
                   key={href}

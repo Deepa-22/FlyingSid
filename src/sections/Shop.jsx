@@ -319,7 +319,7 @@ function CartDrawer({ items, onClose, onQtyChange, onRemove }) {
                 Enquire on WhatsApp
               </a>
               <a
-                href={`mailto:hello@flyingsid.com?subject=${encodeURIComponent('Shop Enquiry — ' + items.map(i => i.name).join(', '))}&body=${encodeURIComponent(orderText)}`}
+                href={`mailto:flyingsidflimz@gmail.com?subject=${encodeURIComponent('Shop Enquiry — ' + items.map(i => i.name).join(', '))}&body=${encodeURIComponent(orderText)}`}
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-white/15 hover:border-white/30 text-gray-400 hover:text-white text-xs font-bold tracking-widest uppercase transition-all duration-200"
               >
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

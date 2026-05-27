@@ -47,7 +47,7 @@ export default function App() {
 
           <footer className="py-8 border-t border-white/5 text-center text-gray-700
                              text-xs tracking-widest uppercase">
-            © {new Date().getFullYear()} Flying Sid. All rights reserved.
+            © {new Date().getFullYear()} FlyingSid Flimz. All rights reserved.
           </footer>
         </div>
       )}
