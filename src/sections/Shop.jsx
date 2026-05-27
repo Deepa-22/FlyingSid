@@ -397,7 +397,7 @@ export default function Shop() {
         <motion.p
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-gray-500 text-sm tracking-wider mb-14 max-w-lg"
+          className="text-gray-500 text-sm tracking-wider mb-14 max-w-lg text-center sm:text-left"
         >
           Pilot-grade builds, professional components and flight-tested accessories —
           every item hand-picked and flown by us.

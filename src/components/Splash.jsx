@@ -43,7 +43,7 @@ export default function Splash({ onFinish }) {
                   duration: 0.55,
                   ease: [0.215, 0.61, 0.355, 1],
                 }}
-                className={`font-display text-5xl md:text-7xl text-white ${char === ' ' ? 'w-5 md:w-7' : ''}`}
+                className={`font-display text-[1.6rem] sm:text-5xl md:text-7xl text-white ${char === ' ' ? 'w-3 sm:w-5 md:w-7' : ''}`}
               >
                 {char === ' ' ? ' ' : char}
               </motion.span>

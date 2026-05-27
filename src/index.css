@@ -47,7 +47,7 @@
   }
 
   .section-title {
-    @apply font-display text-5xl md:text-7xl text-white tracking-widest text-center;
+    @apply font-display text-4xl sm:text-5xl md:text-7xl text-white tracking-widest text-center;
   }
 
   .section-subtitle {

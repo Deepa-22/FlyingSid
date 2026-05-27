@@ -20,8 +20,8 @@ function CornerBracket({ corner }) {
   const pos = {
     tl: 'top-8 left-8 md:top-14 md:left-14',
     tr: 'top-8 right-8 md:top-14 md:right-14 rotate-90',
-    bl: 'bottom-20 left-8 md:bottom-24 md:left-14 -rotate-90',
-    br: 'bottom-20 right-8 md:bottom-24 md:right-14 rotate-180',
+    bl: 'bottom-24 left-8 md:bottom-28 md:left-14 -rotate-90',
+    br: 'bottom-24 right-8 md:bottom-28 md:right-14 rotate-180',
   }[corner]
 
   return (
@@ -176,7 +176,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.8 }}
-          className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed"
+          className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed px-4 sm:px-0"
         >
           Films. Commercials. Extreme sports. We put the camera where no one else can.
         </motion.p>

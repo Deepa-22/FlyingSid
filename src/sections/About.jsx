@@ -98,7 +98,7 @@ export default function About() {
             transition={{ duration: 0.85, ease: 'easeOut' }}
           >
             {/* Main image frame */}
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-surface ring-1 ring-white/10">
+            <div className="relative aspect-[3/4] max-h-[75vh] rounded-2xl overflow-hidden bg-surface ring-1 ring-white/10">
 
               {loading && <div className="w-full h-full bg-surface-2 animate-pulse" />}
 

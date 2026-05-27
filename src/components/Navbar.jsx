@@ -45,8 +45,8 @@ export default function Navbar() {
             </span>
           </button>
 
-          {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-7">
+          {/* Desktop nav — shown only on lg+ to avoid tablet overflow with 9 links */}
+          <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
             {NAV_LINKS.map(link => (
               <li key={link.label}>
                 <button
@@ -62,13 +62,12 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Hamburger */}
+          {/* Hamburger — shown on everything below lg */}
           <div className="flex items-center gap-4">
-            {/* Hamburger */}
             <button
               onClick={() => setOpen(o => !o)}
               aria-label="Toggle menu"
-              className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8"
+              className="lg:hidden flex flex-col justify-center gap-[5px] w-8 h-8"
             >
               <motion.span
                 animate={{ rotate: open ? 45 : 0, y: open ? 7 : 0 }}
