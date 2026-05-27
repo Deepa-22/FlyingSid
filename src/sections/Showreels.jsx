@@ -58,13 +58,36 @@ export default function Showreels() {
                 className="rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.8)]
                            aspect-video bg-black mb-6"
               >
+                {/* Desktop: inline iframe embed */}
                 <iframe
                   src={`https://drive.google.com/file/d/${videos[active].id}/preview`}
-                  className="w-full h-full"
+                  className="hidden sm:block w-full h-full"
                   allow="autoplay; fullscreen"
                   allowFullScreen
                   title={videos[active].name}
                 />
+
+                {/* Mobile: thumbnail + tap to open */}
+                <div className="sm:hidden relative w-full h-full">
+                  <img
+                    src={driveThumb(videos[active].id, 640)}
+                    alt={videos[active].name}
+                    className="w-full h-full object-cover"
+                  />
+                  <a
+                    href={`https://drive.google.com/file/d/${videos[active].id}/view`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-3
+                               bg-black/40"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30
+                                    flex items-center justify-center">
+                      <span className="text-white text-3xl ml-1">▶</span>
+                    </div>
+                    <span className="text-white/80 text-xs tracking-widest uppercase">Tap to play</span>
+                  </a>
+                </div>
               </motion.div>
             </AnimatePresence>
 
