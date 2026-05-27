@@ -117,7 +117,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.6 }}
-        className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-none"
+        className="absolute top-24 left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-none"
       >
         <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
         <span className="text-[9px] text-gray-500 tracking-[0.3em] uppercase">Live Production Ready</span>

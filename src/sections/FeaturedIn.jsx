@@ -52,7 +52,7 @@ export default function FeaturedIn() {
                 key={`${img.id}-${i}`}
                 className="flex-shrink-0 group relative rounded-xl overflow-hidden
                            ring-1 ring-white/8 hover:ring-rose-500/40 transition-all duration-300"
-                style={{ width: '160px', height: '110px' }}
+                style={{ width: '220px', height: '160px' }}
               >
                 <img
                   src={driveImg(img.id)}
