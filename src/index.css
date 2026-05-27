@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #f43f5e #0e0e12;
+  }
+  html::-webkit-scrollbar       { width: 3px; }
+  html::-webkit-scrollbar-track { background: #0e0e12; }
+  html::-webkit-scrollbar-thumb { background: #f43f5e; border-radius: 2px; }
+
+  html, body, #root {
+    height: 100%;
+    background-color: #080808;
+    color: #fff;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply font-display text-5xl md:text-7xl text-white tracking-widest text-center;
+  }
+
+  .section-subtitle {
+    @apply text-xs text-gray-500 tracking-widest3 uppercase text-center;
+  }
+
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-rose-500 hover:bg-rose-400 text-white
+           px-7 py-3 rounded-full text-xs tracking-widest uppercase font-medium
+           transition-all duration-300
+           hover:shadow-[0_0_24px_rgba(244,63,94,0.45)];
+  }
+
+  .btn-outline {
+    @apply inline-block border border-white/20 hover:border-rose-500/60 text-white
+           px-7 py-3 rounded-full text-xs tracking-widest uppercase font-medium
+           transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  /* Film grain fixed overlay — apply to a <div> in App */
+  .film-grain {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.038;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    animation: grain 0.12s steps(1) infinite;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent;
+  }
+}

@@ -1,0 +1,292 @@
+export const DRIVE_FOLDERS = {
+  mainVideo: '1vQ0qHesykod6-jtPzmqkYA164BWkOayT',
+  about:     '1pj2gaAVPY2IS1cCsbIvoXVIc4KXisfqk',
+  featured:  '1TSxRF4xwra-9UCPRW2EEWeU5CgLNmdr0',
+  showreels: '1mZdVolooKXxiIP-k07PrnGLaSdr481Ke',
+  gear:      '1Z1gCWMYzImswuNTPh9jAwp06_wJONH6G',
+  images:    '1XucKxUd3Rtf-n9G6Z_S4WZMjiHlQv_5f',
+  gallery:   '1rPoYj3ksX4nzUB1jE8y9zm5VA32eQ_h3',
+}
+
+export const SITE_CONFIG = {
+  name:      'Flying Sid',
+  tagline:   'FPV Cinematics',
+  instagram: 'https://www.instagram.com/flyingsid',  // update with real handle
+  email:     'hello@flyingsid.com',                   // update with real email
+}
+
+export const NAV_LINKS = [
+  { label: 'Home',      href: '#hero' },
+  { label: 'About',     href: '#about' },
+  { label: 'Showreels', href: '#showreels' },
+  { label: 'Gallery',   href: '#gallery' },
+  { label: 'Gear',      href: '#gear' },
+  { label: 'Services',  href: '#services' },
+  { label: 'Shop',      href: '#shop' },
+  { label: 'Careers',   href: '#hiring' },
+  { label: 'Contact',   href: '#contact' },
+]
+
+export const STATS = [
+  { value: '5+',   label: 'Years Flying' },
+  { value: '200+', label: 'Projects Done' },
+  { value: '15+',  label: 'Countries' },
+  { value: '1M+',  label: 'Frames Shot' },
+]
+
+export const SERVICES = [
+  {
+    id: 'fpv',
+    title: 'FPV Cinematography',
+    desc: 'Immersive first-person footage that puts viewers inside the action — impossible with traditional drones.',
+  },
+  {
+    id: 'commercial',
+    title: 'Commercial Production',
+    desc: 'Brand storytelling from the sky. Advertising, product launches and promotional campaigns.',
+  },
+  {
+    id: 'sports',
+    title: 'Extreme Sports',
+    desc: 'Chase the athlete. Frame every trick, jump and manoeuvre from inches away at full speed.',
+  },
+  {
+    id: 'events',
+    title: 'Events & Weddings',
+    desc: 'Capture the day from an angle nobody else can. Sweeping reveals and cinematic moments.',
+  },
+  {
+    id: 'realestate',
+    title: 'Real Estate',
+    desc: 'Dynamic property walkthroughs, reveal shots and sweeping exterior passes that sell.',
+  },
+  {
+    id: 'film',
+    title: 'Feature & Short Films',
+    desc: 'Production-grade aerial plates for narrative work. Collaborate directly with directors and DPs.',
+  },
+]
+
+export const OPEN_POSITIONS = [
+  {
+    id: 'fpv-pilot',
+    title: 'FPV Drone Pilot',
+    department: 'tech',
+    type: 'Freelance',
+    location: 'On-site / Travel',
+    desc: 'Join our core flight team. You\'ll be flying custom-built FPV rigs on commercial shoots, events, and film productions across India and abroad.',
+    requirements: [
+      '2+ years FPV flying experience',
+      'Comfortable with freestyle and cinematic styles',
+      'Own equipment is a plus',
+      'Willingness to travel for shoots',
+      'DGCA certification preferred',
+    ],
+  },
+  {
+    id: 'video-editor',
+    title: 'Video Editor / Colorist',
+    department: 'tech',
+    type: 'Full-time',
+    location: 'Remote',
+    desc: 'We\'re looking for a sharp editor with a cinematic eye. You\'ll cut FPV footage into polished deliverables for commercial clients, sports brands and film productions.',
+    requirements: [
+      'Proficient in Premiere Pro or DaVinci Resolve',
+      'Experience colour grading LOG footage',
+      'Portfolio showing cinematic edits',
+      'Ability to meet tight deadlines',
+      'Motion graphics knowledge is a bonus',
+    ],
+  },
+  {
+    id: 'drone-tech',
+    title: 'Drone Technician / Build Engineer',
+    department: 'tech',
+    type: 'Part-time',
+    location: 'On-site — Bangalore',
+    desc: 'Keep our fleet flying. You\'ll be responsible for building, repairing and tuning our custom FPV rigs. If you love soldering and Betaflight, this is your role.',
+    requirements: [
+      'Hands-on experience building FPV drones',
+      'Proficient with Betaflight / Cleanflight',
+      'Basic electronics and soldering skills',
+      'Experience with DJI O3 / Walksnail preferred',
+      'Ability to diagnose flight issues quickly',
+    ],
+  },
+  {
+    id: 'production-assistant',
+    title: 'Production Assistant',
+    department: 'non-tech',
+    type: 'Full-time',
+    location: 'Bangalore',
+    desc: 'Be the backbone of every shoot. You\'ll manage logistics, coordinate with clients, handle gear, and ensure every production runs smoothly from call sheet to wrap.',
+    requirements: [
+      'Excellent organisational skills',
+      'Prior experience in film or event production',
+      'Strong communication and problem-solving',
+      'Valid driving licence',
+      'Comfortable with early mornings and late shoots',
+    ],
+  },
+  {
+    id: 'client-relations',
+    title: 'Client Relations Manager',
+    department: 'non-tech',
+    type: 'Full-time',
+    location: 'Remote / Bangalore',
+    desc: 'Own the client relationship from first enquiry to final delivery. You\'ll be the bridge between creative vision and client expectations, ensuring every project lands perfectly.',
+    requirements: [
+      '2+ years in sales or account management',
+      'Excellent written and verbal English',
+      'Confidence pitching to brands and agencies',
+      'Understanding of video production workflows',
+      'Existing network in media / advertising is a plus',
+    ],
+  },
+  {
+    id: 'social-media',
+    title: 'Social Media & Content Manager',
+    department: 'non-tech',
+    type: 'Part-time',
+    location: 'Remote',
+    desc: 'Grow our presence across Instagram, YouTube and beyond. You\'ll create behind-the-scenes content, write compelling captions, and build a community around FPV cinematics.',
+    requirements: [
+      'Strong Instagram and YouTube understanding',
+      'Ability to write engaging copy in English',
+      'Basic video editing for Reels / Shorts',
+      'Data-driven mindset — you track what works',
+      'Passion for aviation and cinematography',
+    ],
+  },
+]
+
+export const WHY_JOIN = [
+  { title: 'Real Shoots, Real Impact', desc: 'Every project is a feature film, a brand campaign, or a record-breaking stunt. No busy-work.' },
+  { title: 'Global Reach', desc: 'We\'ve shot across 15+ countries. New team members can expect international travel from day one.' },
+  { title: 'Lean & Creative', desc: 'Small team, big ideas. Your work gets seen and your voice gets heard — no corporate layers.' },
+  { title: 'Cutting-Edge Tech', desc: 'Latest FPV rigs, cinema cameras, and workflows. We don\'t compromise on tools.' },
+]
+
+export const SHOP_PRODUCTS = [
+  // Drones
+  {
+    id: 'apex-5',
+    category: 'drones',
+    name: 'Apex 5" Cinematic Build',
+    price: 28500,
+    badge: 'Bestseller',
+    desc: 'Custom-built 5-inch cinematic FPV rig. F7 stack, 2306 motors, DJI O3 Air Unit. Tuned and test-flown by our pilots.',
+    specs: ['2306 2450KV Motors', 'F7 45A AIO Stack', 'DJI O3 Air Unit', '6S LiPo Ready', 'GoPro / naked cam mount'],
+  },
+  {
+    id: 'nano-3',
+    category: 'drones',
+    name: 'Nano 3" Cinewhoop',
+    price: 16800,
+    badge: 'New',
+    desc: 'Ultra-compact ducted cinewhoop for indoor, tight-space and proximity flying. Prop guards and cam mount included.',
+    specs: ['1404 3800KV Motors', 'Walksnail Avatar', 'Micro cam mount', 'Ducted props', '4S LiPo'],
+  },
+  {
+    id: 'long-range-7',
+    category: 'drones',
+    name: '7" Long Range Explorer',
+    price: 44000,
+    badge: null,
+    desc: 'GPS-assisted long-range FPV built for landscape, expedition and infrastructure cinematography.',
+    specs: ['2807 1300KV Motors', 'GPS Rescue enabled', 'ExpressLRS 900MHz', 'INAV firmware', '6S 3000mAh compatible'],
+  },
+  {
+    id: 'toothpick-2',
+    category: 'drones',
+    name: 'Toothpick 2" Micro',
+    price: 9200,
+    badge: 'Limited',
+    desc: 'Tiny, lightning-fast micro drone for BTS shots, interiors and aggressive proximity flying under 250g.',
+    specs: ['1102 8500KV Motors', 'Walksnail Nano', 'ELRS 2.4GHz', '1S / 2S LiPo', '< 250g AUW'],
+  },
+  // Parts
+  {
+    id: 'f7-stack',
+    category: 'parts',
+    name: 'F7 AIO Stack 45A',
+    price: 5600,
+    badge: null,
+    desc: 'All-in-one F7 flight controller with 45A ESC stack. Plug and play for all 5-inch builds.',
+    specs: ['STM32F745 MCU', '45A BLHeli32 ESC', 'Barometer + OSD', 'USB-C port', 'Betaflight ready'],
+  },
+  {
+    id: 'o3-air-unit',
+    category: 'parts',
+    name: 'DJI O3 Air Unit',
+    price: 14200,
+    badge: 'Hot',
+    desc: 'Official DJI O3 Air Unit with full cable set. 4K recording with ultra-low latency video transmission.',
+    specs: ['4K / 60fps recording', '< 40ms latency', 'Up to 10km range', 'MicroSD up to 256GB', 'DJI Goggles 2/3 compat.'],
+  },
+  {
+    id: '2306-motors',
+    category: 'parts',
+    name: '2306 2450KV Motors (×4)',
+    price: 3400,
+    badge: null,
+    desc: 'Our go-to motors for 5-inch freestyle and cinematic builds. Pre-balanced, pre-tested matched set.',
+    specs: ['2306 stator', '2450KV', '6S optimised', 'Titanium alloy shaft', 'IP52 splash resistant'],
+  },
+  {
+    id: 'elrs-tx',
+    category: 'parts',
+    name: 'ELRS 2.4GHz Nano TX',
+    price: 2200,
+    badge: null,
+    desc: 'Compact ExpressLRS 2.4GHz module for JR Bay radios. Best-in-class link latency and range.',
+    specs: ['2.4GHz band', '250Hz packet rate', '< 1ms latency', 'WiFi firmware update', 'Up to 1W output'],
+  },
+  // Accessories
+  {
+    id: '6s-lipo-pack',
+    category: 'accessories',
+    name: '6S 1300mAh LiPo × 4',
+    price: 7600,
+    badge: 'Bundle',
+    desc: 'Matched set of four 6S 1300mAh packs. Pre-charged, cycle tested and balanced for consistent performance.',
+    specs: ['6S 22.2V nominal', '1300mAh capacity', '120C burst discharge', 'XT60 connector', 'Hard case compatible'],
+  },
+  {
+    id: 'dual-charger',
+    category: 'accessories',
+    name: 'Dual Port Smart Charger',
+    price: 5200,
+    badge: null,
+    desc: '200W dual-channel LiPo/LiHV charger with built-in balancer, battery analyser and USB-C PD input.',
+    specs: ['200W per port', '1–8S LiPo/LiHV', 'USB-C PD 65W input', 'Bluetooth app control', 'Internal resistance check'],
+  },
+  {
+    id: 'pilot-case',
+    category: 'accessories',
+    name: 'Waterproof Pilot Hard Case',
+    price: 5800,
+    badge: 'Custom',
+    desc: 'IP67 waterproof hard case with custom foam inlay for drone + battery + controller. TSA-approved.',
+    specs: ['IP67 waterproof', 'TSA-approved latches', 'Custom foam inlay', 'Interior 58×46×25cm', 'Pressure valve'],
+  },
+  {
+    id: 'dji-goggles-3',
+    category: 'accessories',
+    name: 'DJI Goggles 3',
+    price: 33500,
+    badge: 'Premium',
+    desc: 'Latest DJI FPV goggles with micro-OLED displays, O3+ compatibility and built-in DVR recording.',
+    specs: ['Micro-OLED dual screens', '100Hz refresh rate', 'O3+ compatible', 'DVR built-in', 'Adjustable diopter'],
+  },
+]
+
+export const PROJECT_TYPES = [
+  'FPV Cinematography',
+  'Commercial Shoot',
+  'Event / Wedding',
+  'Extreme Sports',
+  'Real Estate',
+  'Feature / Short Film',
+  'Other',
+]
